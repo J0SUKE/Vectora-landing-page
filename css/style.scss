@@ -1,5 +1,19 @@
 @import "globals";
 
+.cursor
+{
+    position: absolute;
+    left: -100px;
+    top: 0;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: $lime-green;
+    z-index: 99;
+    mix-blend-mode:difference;
+}
+
+
 header
 {
     position: fixed;
@@ -11,12 +25,34 @@ header
     height: 42px;
     padding: 25px 0;
     box-sizing: content-box;
+    cursor: none;
 }
 
-.header,.hero,.services-grid
+.header,.hero,.services-grid,.products-grid
 {
-    width: 90%;
+    width: 88%;
     max-width: 1300px;
+}
+
+.cta-btn
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    height: 42px;
+    max-height: 42px;
+    border-radius: 21px;
+    width: 160px;
+    padding: 11px 20px;
+    white-space: nowrap;
+    font-size: .9rem;
+    box-sizing: border-box;
+    cursor: pointer;
+    img{
+        width: 17px;
+        margin-left: 5px;
+    }
 }
 
 .header
@@ -56,23 +92,6 @@ header
             border-radius: .5rem;
         }
         
-    }
-    .cta-btn
-    {
-        display: flex;
-        background: white;
-        height: 42px;
-        max-height: 42px;
-        border-radius: 21px;
-        width: 160px;
-        padding: 11px 20px;
-        white-space: nowrap;
-        font-size: .9rem;
-        box-sizing: border-box;
-        img{
-            width: 17px;
-            margin-left: 5px;
-        }
     }
 
     .mobile-menu-btn
@@ -231,6 +250,8 @@ header
     }
 }
 
+//***************************
+
 main
 {
     position: absolute;
@@ -238,6 +259,7 @@ main
     width: 100%;
     z-index: 0;
     background: $main-green;
+    cursor: none;
 }
 
 .hero
@@ -249,7 +271,7 @@ main
     &__left
     {
         h1{
-            font-size: 4rem;
+            font-size: clamp(3rem,5vw,4rem);
 
             color: white;
             font-weight: 400;
@@ -267,12 +289,24 @@ main
             object-fit: cover;
         }
     }
+
+    @media screen and(max-width:800px) 
+    {
+        flex-direction: column;
+        align-items: flex-start;    
+        &__right
+        {
+            margin-top: 80px;
+            width: 70%;
+            min-width: 350px;
+        }
+    }
 }
 
 .services
 {
     //height: 800px;
-    padding-top: 130px;
+    padding: 130px 0;
     background: white;
     h1{
         text-align: center;
@@ -283,7 +317,7 @@ main
 
 .services-grid
 {
-    margin: 100px auto;
+    margin: 100px auto 0 auto;
     display: grid;
     grid-template-columns: repeat(3,1fr);
     grid-template-rows: repeat(2,1fr);
@@ -294,9 +328,14 @@ main
         border: 1px solid rgb(232, 232, 232);
         border-radius: 15px;
         position: relative;
-        padding:  2rem;
+        padding:  2rem 2rem 3rem 2rem;
         overflow: hidden;
         cursor: pointer;
+        img{
+            margin: 1rem 0;
+            transform: rotate(0);
+            transition: transform 5s ease-out;
+        }
         h2{
             margin-top: 1.5rem;
             font-weight: 900;
@@ -321,6 +360,10 @@ main
 
         &:hover
         {
+            img{
+                transform: rotate(-90deg);
+            }
+            
             &::after
             {
                 transform: scale(1);
@@ -338,5 +381,147 @@ main
     {
         grid-template-columns: repeat(1,1fr);
         grid-template-rows: repeat(6,1fr);
+    }
+}
+
+.products
+{
+    cursor: none;
+    background: white;
+    padding-bottom: 100px;
+    h1{
+        font-size: 3.5rem;
+        text-align: center;
+        font-weight: 400;;
+    }
+}
+
+.products-grid
+{
+    margin: 100px auto 0px auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(2,1fr);
+    grid-gap: 60px 30px;
+    cursor: none;
+
+    .product-element
+    {
+        border-radius: 15px;
+        overflow: hidden;
+        background: rgb(246, 245, 245);
+        transform: translateY(0px);
+        transition: transform .4s;
+        cursor: pointer;
+        &-top
+        {
+            position: relative;   
+        }
+        img{
+            width: 100%;
+            object-fit: cover;
+        }
+
+        h2{
+            font-weight: 300;
+        }
+        p{
+            margin-top: .5rem;
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        &-bottom
+        {
+            padding: 2rem 1rem 2rem 2rem;
+            border-radius: 0 0 1rem 1rem;
+        }
+
+        &:hover
+        {
+            transform: translateY(-20px);
+            box-shadow: 0px 1px 2px darkgray;
+        }
+
+    }
+
+    .price
+    {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        background: $lime-green;
+        font-weight: 700;
+        padding: .7rem 1.2rem;
+        border-radius: 2rem;
+        font-size: .8rem;
+    }
+
+    .product-element:last-of-type
+    {
+        height: 450px;
+        background-image: url("../assets/products6.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding: 6rem 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        h1{
+            color: white;
+            font-size: clamp(1.7rem,2vw,2.3rem);
+            padding: 1rem;
+            font-weight: 800;
+        }
+        
+        .btn-container
+        {
+            width: 200px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        button{
+            height: 55px;
+            max-height: 55px;
+            border-radius: 27px;
+            font-size: 1.1rem;
+            transition: transform .2s;
+            position: relative;
+            .cta-btn-content
+            {
+                position: absolute;
+                inset: 0;
+                z-index: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .cta-btn-layer
+            {
+                position: absolute;
+                inset: 0;
+                z-index: 1;
+            }
+            img{
+                width: 18px;
+            }
+        }
+    }
+
+    @media screen and(max-width:1075px) 
+    {
+        grid-template-columns: repeat(2,1fr);
+        grid-template-rows: repeat(3,1fr);       
+    }
+    
+    @media screen and(max-width:750px) 
+    {
+        grid-template-columns: repeat(1,1fr);
+        grid-template-rows: repeat(6,1fr);       
     }
 }

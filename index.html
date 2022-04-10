@@ -9,6 +9,8 @@
     
 </head>
 <body>
+    <div class="cursor"></div>
+    
     <header>
         <div class="header">
             <div class="header__left">
@@ -78,6 +80,75 @@
                 </a>
             </div>
         </section>
+
+        <section class="products">
+            <h1>Our Products</h1>
+            <div class="products-grid">
+                <a  href="https://github.com/J0SUKE" target="_blank" class="product-element">
+                    <div class="product-element-top">
+                        <img src="./assets/product1.png" alt="">
+                        <div class="price">$32</div>
+                    </div>
+                    <div class="product-element-bottom">
+                        <h2>Web UI Kit</h2>
+                        <p>Saascuy - Saas Landing Page UI KIT</p>
+                    </div>
+                </a>
+                <a  href="https://github.com/J0SUKE" target="_blank" class="product-element">
+                    <div class="product-element-top">
+                        <img src="./assets/product2.png" alt="">
+                        <div class="price">$14</div>
+                    </div>
+                    <div class="product-element-bottom">
+                        <h2>Web UI Kit</h2>
+                        <p>Portoplay - Portofolio Landing Page UI KIT</p>
+                    </div>
+                </a>
+                <a href="https://github.com/J0SUKE" target="_blank"  class="product-element">
+                    <div class="product-element-top">
+                        <img src="./assets/product3.png" alt="">
+                        <div class="price">$28</div>
+                    </div>
+                    <div class="product-element-bottom">
+                        <h2>Web UI Kit</h2>
+                        <p>Podcast - Web Design KIT</p>
+                    </div>
+                </a>
+                <a  href="https://github.com/J0SUKE" target="_blank" class="product-element">
+                    <div class="product-element-top">
+                        <img src="./assets/product4.png" alt="">
+                        <div class="price">$28</div>
+                    </div>
+                    <div class="product-element-bottom">
+                        <h2>Web UI Kit</h2>
+                        <p>Oomah - Furniture Apps UI KIT</p>
+                    </div>
+                </a>
+                <a  href="https://github.com/J0SUKE" target="_blank" class="product-element">
+                    <div class="product-element-top">
+                        <div class="price">$20</div>
+                        <img src="./assets/product5.png" alt="">
+                    </div>
+                    <div class="product-element-bottom">
+                        <h2>Web UI Kit</h2>
+                        <p>Hi - Social Service App UI KIT</p>
+                    </div>
+                </a>
+                <a  href="https://github.com/J0SUKE" target="_blank" class="product-element">
+                    <h1>Check out all our Products</h1>
+                    <div class="btn-container">
+                        <button class="cta-btn">
+                            <div class="cta-btn-content">
+                                <span>View Product</span>
+                                <img src="./assets/ArrowElbowUpLeft.svg" alt="">
+                            </div>
+                            <div class="cta-btn-layer"></div>
+                            
+                        </button>
+                    </div>
+                </a>
+            </div>
+        </section>
     </main>
 </body>
 <script>
@@ -104,14 +175,83 @@
     let header = document.querySelector("header");
     let heroHeight = document.querySelector(".hero").getBoundingClientRect().height+500;
     
-    window.addEventListener("scroll",()=>{
-        
+    function adaptHeaderOpacity() {
         const{scrollTop} = document.documentElement;
         let opacity = scrollTop/heroHeight;
-        header.style.background = `rgba(13, 39, 37,${opacity})`;
-    })
+        header.style.background = `rgba(13, 39, 37,${opacity})`;    
+    }
+    
+    adaptHeaderOpacity()
+    
+    window.addEventListener("scroll",adaptHeaderOpacity);
     
 
+</script>
+
+<script>
+    //product button animation
+    function Point(x,y) {
+        this.x = (x-btnContainer.getBoundingClientRect().width/2)*0.3;
+        this.y = (y-btnContainer.getBoundingClientRect().height/2)*0.3;
+    }
+
+    let isOver = false;
+
+    let btnContainer = document.querySelector(".btn-container .cta-btn-layer");
+    
+    btnContainer.addEventListener("mouseover",(e)=>{
+        isOver=true;
+    })
+    
+    btnContainer.addEventListener("mouseleave",(e)=>{
+        isOver=false;
+        document.querySelector(".btn-container button").style.transform = `translate(${0}px,${0}px)`;
+    })
+
+    btnContainer.addEventListener("mousemove",(e)=>{
+        if (!isOver) return;
+        
+        let position = new Point(e.offsetX,e.offsetY);
+        const {x,y} = position;
+        console.log(x,y);
+        
+        //console.log(e.offsetX,e.offsetY);
+
+        document.querySelector(".btn-container button").style.transform = `translate(${x}px,${y}px)`;
+    })
+
+</script>
+
+<script>
+    //cursor
+    let cursor = document.querySelector(".cursor");
+    let lastScroll=document.documentElement.scrollTop;
+    let cursorTop=0;
+
+    window.addEventListener("mousemove",(e)=>{
+        cursor.style.left = `${e.pageX}px`;
+        cursorTop=e.pageY;
+        cursor.style.top = `${cursorTop}px`;
+
+        const{scrollTop} = document.documentElement;
+        lastScroll=scrollTop;
+        
+    })
+
+
+    window.addEventListener("scroll",(e)=>{
+        
+        
+        const{scrollTop} = document.documentElement;
+
+        let deltaScroll = scrollTop-lastScroll;
+
+        cursor.style.top = `${cursorTop+deltaScroll}px`;
+        
+        //cursorTop=scrollTop+cursorTop;
+        
+        
+    })
 </script>
 
 </html>
