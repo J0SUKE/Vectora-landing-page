@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Vectora</title>
+    
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="header__left">
+                <img src="./assets/logo.png" alt="">
+            </div>
+            <div class="header__right">
+                <ul>
+                    <li>Project</li>
+                    <li>Products <span>New</span></li>
+                    <li>About</li>
+                </ul>
+                <button class="cta-btn">
+                    <span>Shoot us project</span>
+                    <img src="./assets/ArrowElbowUpLeft.svg" alt="">
+                </button>
+                <div class="mobile-menu-btn">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <div class="hero__left">
+                <h1>Solving problems<br>
+                    with unique and<br>
+                    creative design</h1>
+            </div>
+            <div class="hero__right">
+                <video src="./assets/heroVideo.mp4" autoplay muted loop></video>
+            </div>
+        </section>
+
+        <section class="services">
+            <h1>The service we do,</h1>
+            <div class="services-grid">
+                <a href="https://github.com/J0SUKE" target="_blank" class="service-element">
+                    <img src="./assets/brand1.svg" alt="">
+                    <h2>Logo & Branding</h2>
+                    <p>Represents your identity into visual appearance including logo, guidelines and it’s application to several products mockups</p>
+                </a>
+                <a href="https://github.com/J0SUKE" target="_blank" class="service-element">
+                    <img src="./assets/brand2.svg" alt="">
+                    <h2>UIUX Desing</h2>
+                    <p>Creating an aesthetics and usable interfaces design which includes mobile apps design, webapps design and website design.</p>
+                </a>
+                <a href="https://github.com/J0SUKE" target="_blank" class="service-element">
+                    <img src="./assets/brand3.svg" alt="">
+                    <h2>Developement</h2>
+                    <p>We’re ready to apply the design that we’ve made into front-end development by our talented and experts human resource</p>
+                </a>
+                <a href="https://github.com/J0SUKE" target="_blank" class="service-element">
+                    <img src="./assets/bran4.svg" alt="">
+                    <h2>Illustration</h2>
+                    <p>Our talented illustrator will help you to make a high–quality both 2d and 3d Illsutration based on clients’ needs and brief</p>
+                </a>
+                <a href="https://github.com/J0SUKE" target="_blank" class="service-element">
+                    <img src="./assets/brand5.svg" alt="">
+                    <h2>Interaction</h2>
+                    <p>Creating interactive products and services by moving beyond the item to know how users will operate the interfaces design that we’ve made</p>
+                </a>
+                <a href="https://github.com/J0SUKE" target="_blank" class="service-element">
+                    <img src="./assets/brand6.svg" alt="">
+                    <h2>Animation</h2>
+                    <p>Our talented illustrator will help you to make a high–quality both 2d and 3d Illsutration based on clients’ needs and brief</p>
+                </a>
+            </div>
+        </section>
+    </main>
+</body>
+<script>
+    //mobile menu btn
+    
+    let mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+    mobileMenuBtn.addEventListener("click",(e)=>{
+        if(mobileMenuBtn.classList.contains("active"))
+        {
+            console.log("is active");
+            mobileMenuBtn.classList.remove("active");
+            mobileMenuBtn.classList.add("inactive");
+            
+            return;
+        }
+        
+        mobileMenuBtn.classList.add("active");
+        mobileMenuBtn.classList.remove("inactive");
+        
+    })
+
+    //header opacity
+    
+    let header = document.querySelector("header");
+    let heroHeight = document.querySelector(".hero").getBoundingClientRect().height+500;
+    
+    window.addEventListener("scroll",()=>{
+        
+        const{scrollTop} = document.documentElement;
+        let opacity = scrollTop/heroHeight;
+        header.style.background = `rgba(13, 39, 37,${opacity})`;
+    })
+    
+
+</script>
+
+</html>
