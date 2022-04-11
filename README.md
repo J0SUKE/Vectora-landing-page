@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   
-  <h3 align="center">Vectora - Landing page</h3>
+  <h3 align="center">Vektora - Landing page</h3>
 
   <p align="center">
     Responsive Modern Lamding page
