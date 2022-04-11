@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/caroussel.css"/>
     <title>Vectora</title>
     
 </head>
@@ -149,6 +150,63 @@
                 </a>
             </div>
         </section>
+
+        <section class="reviews">
+            <h1>Reviews from Our Clients</h1>
+            <div class="reviews__caroussel">
+                <button class="btn-next swiper-button-next" data-caroussel="next"></button>
+                <button class="btn-prev swiper-button-prev" data-caroussel="prev"></button>
+                <div class="reviews__caroussel-container swiper mySwiper">
+                    <div class="reviews__caroussel-content swiper-wrapper">
+                        <div class="caroussel-element swiper-slide">
+                            <img src="./assets/imgslide1.png" alt="">
+                            <p>We struggled a lot on building unique yet functional UI design for our project, tried lots and lots of design idea for a couple of month and none of them went successful.
+                                Vektora team solved all the problems we had for month in a day, provided us a incredible smartphone and desktop UI design really quickly. Highly recommended for the business owners who want to make their website’s UI/UX on the super high quality and professional level.</p>
+                                <div class="client-name">
+                                    <div class="name">Yu Tsukioka, </div>
+                                    <div class="client">Manager Meacle</div>
+                                </div>
+                            
+                        </div>
+                        <div class="caroussel-element swiper-slide">
+                            <img src="./assets/slide2.png">
+                            <p>We went through a lot of designers before we arrived at working with Vektora. When we started working with Achmad and his team, there was an instant connection. We are building an out-of-the-box product that Vektora has undoubtedly taken to the next level with their brilliant eye for good looking design. Our users have been raving about the implemented designs, and we can’t wait to continue designing our roadmap with Vektora.</p>
+                            <div class="client-name">
+                                <div class="name">Soham Tikekar, </div>
+                                <div class="client">Manager Homejam</div>
+                            </div>
+                        </div>
+                        <div class="caroussel-element swiper-slide">
+                            <img src="./assets/slide3.png" alt="">
+                            <p>Vektora did amazing work designing our webpage. They took our ideas to concept and turned it into really beautiful, artistic designs. Their style is unique, They’re quick to respond and really just fun to work with. The project was finished on time and we surely be requesting more work from them.</p>
+                            <div class="client-name">
+                                <div class="name">Mahsa Behrashi, </div>
+                                <div class="client">Manager BerryonMars </div>
+                            </div>
+                        </div>
+                        <div class="caroussel-element swiper-slide">
+                            <img src="./assets/slide4.png" alt="">
+                            <p>Vektora Team has been on the best UI designers for our project, they understood our product vision and our idea easily and implemented it on canvas through there creativity. We have seen remarkable increase in our product growth and branding after making our New Website UI. Always recommend them to any business owner who is looking to revamp there website </p>
+                            <div class="client-name">
+                                <div class="name">Aditya Sharma, </div>
+                                <div class="client">Manager POSIMYTH Team</div>
+                            </div>
+                        </div>
+                        <div class="caroussel-element swiper-slide">
+                            <img src="./assets/slide5.png" alt="">
+                            <p>We love working with Vektora! The team has supported us in several projects and in a unique way to develop strong brand designs and UI designs for digital products. Fast, reliable, in clearly structured processes and with inspiring results: We really appreciate having you as a partner!</p>
+                            <div class="client-name">
+                                <div class="name">Erik Weißflog, </div>
+                                <div class="client">Manager Leapfrog GMBH</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="swiper-pagination"></div>
+
+            </div>
+        </section>
     </main>
 </body>
 <script>
@@ -252,6 +310,20 @@
         
         
     })
+</script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    let btns = [...document.querySelectorAll(".reviews__caroussel button")];
+    let carousselContainer = document.querySelector(".reviews__caroussel-content");
+
+      var swiper = new Swiper(".reviews__caroussel-container", {
+        slidesPerView: 1,
+        loop: true,
+        navigation: {
+          nextEl: btns[0],
+          prevEl: btns[1],
+        },
+      });
 </script>
 
 </html>
