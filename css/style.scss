@@ -16,6 +16,54 @@
     }
 }
 
+.layer
+{
+    position: fixed;
+    inset: 0;
+    background: $main-green;
+    z-index: 101;
+    div{
+        position: absolute;
+        inset: 0;
+    }
+
+    .layer1
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $main-green;
+        z-index: 2;
+        img{
+            opacity: 0;
+            animation: animateTitle 1s forwards;
+        }
+        animation: animateLater2 1s 1s forwards;
+        @keyframes animateLater2 {
+            from{
+                transform: translateX(0);
+            }to{
+                transform: translateX(-100%);
+            }
+        }
+    }
+    .layer2
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: white;
+        color: $main-green;
+        font-size: 2rem;
+        h2{
+            font-weight: 400;
+        }
+        z-index: 1;
+    }
+
+    animation: animateLater2 1s 2.5s forwards;
+}
+
 
 header
 {
@@ -55,6 +103,12 @@ header
     img{
         width: 17px;
         margin-left: 5px;
+    }
+    position: relative;
+    &-layer
+    {
+        position: absolute;
+        inset: 0;
     }
 }
 
@@ -280,7 +334,7 @@ main
             color: white;
             font-weight: 400;
             transform: rotateY(35deg) rotateZ(5deg)    ;
-            //opacity: 0;
+            opacity: 0;
         }
     }
     &__right
@@ -316,7 +370,7 @@ main
         .hero__left
         {
             h1{
-                animation: animateHeroTitle 1.5s forwards;
+                animation: animateHeroTitle 1.5s 3s forwards;
                 @keyframes animateHeroTitle {
                     from{
                         transform: rotateY(35deg) rotateZ(8deg)    ;
@@ -332,7 +386,7 @@ main
         .hero__right
         {
             video{
-                animation: animateHeroVideo 1.5s forwards;
+                animation: animateHeroVideo 1.5s 3s forwards;
                 @keyframes animateHeroVideo {
                     from{
                         transform: translateY(40%);

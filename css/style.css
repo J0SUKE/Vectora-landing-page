@@ -43,6 +43,84 @@ body {
   }
 }
 
+.layer {
+  position: fixed;
+  inset: 0;
+  background: #0d2725;
+  z-index: 101;
+  -webkit-animation: animateLater2 1s 2.5s forwards;
+          animation: animateLater2 1s 2.5s forwards;
+}
+
+.layer div {
+  position: absolute;
+  inset: 0;
+}
+
+.layer .layer1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #0d2725;
+  z-index: 2;
+  -webkit-animation: animateLater2 1s 1s forwards;
+          animation: animateLater2 1s 1s forwards;
+}
+
+.layer .layer1 img {
+  opacity: 0;
+  -webkit-animation: animateTitle 1s forwards;
+          animation: animateTitle 1s forwards;
+}
+
+@-webkit-keyframes animateLater2 {
+  from {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+}
+
+@keyframes animateLater2 {
+  from {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+}
+
+.layer .layer2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: white;
+  color: #0d2725;
+  font-size: 2rem;
+  z-index: 1;
+}
+
+.layer .layer2 h2 {
+  font-weight: 400;
+}
+
 header {
   position: fixed;
   z-index: 99;
@@ -82,11 +160,17 @@ header {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   cursor: pointer;
+  position: relative;
 }
 
 .cta-btn img {
   width: 17px;
   margin-left: 5px;
+}
+
+.cta-btn-layer {
+  position: absolute;
+  inset: 0;
 }
 
 .header {
@@ -442,6 +526,7 @@ main {
   font-weight: 400;
   -webkit-transform: rotateY(35deg) rotateZ(5deg);
           transform: rotateY(35deg) rotateZ(5deg);
+  opacity: 0;
 }
 
 .hero__right {
@@ -483,8 +568,8 @@ main {
 }
 
 .hero.active .hero__left h1 {
-  -webkit-animation: animateHeroTitle 1.5s forwards;
-          animation: animateHeroTitle 1.5s forwards;
+  -webkit-animation: animateHeroTitle 1.5s 3s forwards;
+          animation: animateHeroTitle 1.5s 3s forwards;
 }
 
 @-webkit-keyframes animateHeroTitle {
@@ -514,8 +599,8 @@ main {
 }
 
 .hero.active .hero__right video {
-  -webkit-animation: animateHeroVideo 1.5s forwards;
-          animation: animateHeroVideo 1.5s forwards;
+  -webkit-animation: animateHeroVideo 1.5s 3s forwards;
+          animation: animateHeroVideo 1.5s 3s forwards;
 }
 
 @-webkit-keyframes animateHeroVideo {

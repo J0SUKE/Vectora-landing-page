@@ -10,6 +10,15 @@
     
 </head>
 <body>
+    <div class="layer">
+        <div class="layer1">
+            <img src="./assets//logo.png" alt="">
+        </div>
+        <div class="layer2">
+            <h2>Almost there</h2>
+        </div>
+    </div>
+    
     <div class="cursor"></div>
     
     <header>
@@ -221,7 +230,8 @@
                     <div class="conclusion__right">
                         <button class="cta-btn">
                             <span>Shoot us project</span>
-                            <img src="./assets/ArrowElbowUpLeft.svg" alt="">
+                            <img src="./assets/ArrowElbowUpLeft.svg" alt="">    
+                            <div class="cta-btn-layer"></div>
                         </button>
                     </div>
                 </div>
@@ -344,8 +354,6 @@
         
         let position = new Point(e.offsetX,e.offsetY);
         const {x,y} = position;
-        console.log(x,y);
-        
 
         document.querySelector(".btn-container button").style.transform = `translate(${x}px,${y}px)`;
     })
@@ -377,6 +385,14 @@
 
         cursor.style.top = `${cursorTop+deltaScroll}px`;
         
+    })
+
+    document.addEventListener("mouseleave",()=>{
+        cursor.style.display = "none"
+    })
+    document.addEventListener("mouseover",()=>
+    {
+        cursor.style.display = "unset"
     })
 </script>
 
