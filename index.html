@@ -45,7 +45,8 @@
                 <video src="./assets/heroVideo.mp4" autoplay muted loop></video>
             </div>
         </section>
-
+    </main>
+    <section class="page-content">
         <section class="services">
             <h1>The service we do,</h1>
             <div class="services-grid">
@@ -207,8 +208,81 @@
 
             </div>
         </section>
-    </main>
+
+        <section class="final">
+            <section class="conclusion">
+                <div class="conclusion-content">
+                    <div class="conclusion__left">
+                        <h1>
+                            Wanna build something <br>
+                            great together ?
+                        </h1>
+                    </div>
+                    <div class="conclusion__right">
+                        <button class="cta-btn">
+                            <span>Shoot us project</span>
+                            <img src="./assets/ArrowElbowUpLeft.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+            </section>
+    
+            <footer>
+                <ul class="footer-grid">
+                    <li>
+                        <img src="./assets/logo.png" alt="">
+                    </li>
+                    <li>
+                        <h2>Email</h2>
+                        <a href="">hello@vectora.studio</a>
+                        <h2>Adress</h2>
+                        <a href="#">Surakarta,</a>
+                        <a href="#">Central Java</a>
+                    </li>
+                    <li>
+                        <h2>Home</h2>
+                        <a href="#">Products<span>New</span></a>
+                        <a href="#">Projects</a>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <h2>About</h2>
+                        <a href="#">Contact Us</a>
+                        <a href="#">License</a>
+                        <a href="#">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <h2>Follow the developer</h2>
+                        <ul>
+                            <li><a href="#"><img src="./assets/twitter.svg" alt=""></a></li>
+                            <li><a href="#"><img src="./assets/github.svg" alt=""></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </footer>
+        </section>
+    </section>
+
+
+        
 </body>
+<script>
+    let hero=document.querySelector(".hero");
+    let content = document.querySelector(".page-content");
+    
+    
+    window.addEventListener('scroll',()=>{
+        const {scrollTop,clientHeight}=document.documentElement;
+        
+        if(scrollTop>clientHeight) return;
+        
+        content.style.top=`${clientHeight-scrollTop}px`;
+    })
+
+
+</script>
+
+
 <script>
     //mobile menu btn
     
@@ -231,11 +305,11 @@
     //header opacity
     
     let header = document.querySelector("header");
-    let heroHeight = document.querySelector(".hero").getBoundingClientRect().height+500;
+    //let heroHeight = document.querySelector("main").getBoundingClientRect().height+500;
     
     function adaptHeaderOpacity() {
-        const{scrollTop} = document.documentElement;
-        let opacity = scrollTop/heroHeight;
+        const{scrollTop,clientHeight} = document.documentElement;
+        let opacity = scrollTop/clientHeight;
         header.style.background = `rgba(13, 39, 37,${opacity})`;    
     }
     
@@ -273,7 +347,6 @@
         const {x,y} = position;
         console.log(x,y);
         
-        //console.log(e.offsetX,e.offsetY);
 
         document.querySelector(".btn-container button").style.transform = `translate(${x}px,${y}px)`;
     })
@@ -298,19 +371,16 @@
 
 
     window.addEventListener("scroll",(e)=>{
-        
-        
+                
         const{scrollTop} = document.documentElement;
 
         let deltaScroll = scrollTop-lastScroll;
 
         cursor.style.top = `${cursorTop+deltaScroll}px`;
         
-        //cursorTop=scrollTop+cursorTop;
-        
-        
     })
 </script>
+
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
     let btns = [...document.querySelectorAll(".reviews__caroussel button")];
