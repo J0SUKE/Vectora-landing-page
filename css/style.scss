@@ -9,7 +9,7 @@
     width: 30px;
     border-radius: 50%;
     background: $lime-green;
-    z-index: 99;
+    z-index: 100;
     mix-blend-mode:difference;
     @media screen and(max-width:450px) {
         display: none;
@@ -20,7 +20,7 @@
 header
 {
     position: fixed;
-    z-index: 1;
+    z-index: 99;
     //inset: 0 0 unset 0;
     left: 0;
     right: 0;
@@ -266,19 +266,6 @@ main
     cursor: none;
 }
 
-.page-content
-{
-    position: absolute;
-    top: 100vh;
-    left: 0;
-    width: 100%;
-}
-
-.final
-{
-    background: $main-green;
-}
-
 .hero
 {
     margin:200px auto;
@@ -292,6 +279,8 @@ main
 
             color: white;
             font-weight: 400;
+            transform: rotateY(35deg) rotateZ(5deg)    ;
+            //opacity: 0;
         }
     }
     &__right
@@ -304,6 +293,9 @@ main
             width: 100%;
             max-height: 400px;
             object-fit: cover;
+            
+            transform: translateY(40%);
+            opacity: 0;
         }
     }
 
@@ -318,17 +310,69 @@ main
             min-width: 350px;
         }
     }
+
+    &.active
+    {
+        .hero__left
+        {
+            h1{
+                animation: animateHeroTitle 1.5s forwards;
+                @keyframes animateHeroTitle {
+                    from{
+                        transform: rotateY(35deg) rotateZ(8deg)    ;
+                        opacity: 0;
+                    }to{
+                        transform: rotateY(0) rotateZ(0)    ;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        
+        .hero__right
+        {
+            video{
+                animation: animateHeroVideo 1.5s forwards;
+                @keyframes animateHeroVideo {
+                    from{
+                        transform: translateY(40%);
+                        opacity: 0;
+                    }to{
+                        transform: translateY(0%);
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.page-content
+{
+    position: absolute;
+    top: 100vh;
+    left: 0;
+    width: 100%;
+    cursor: none;
 }
 
 .services
 {
     //height: 800px;
-    padding: 130px 0;
+    padding: 200px 0 100px 0;
     background: white;
     h1{
         text-align: center;
-        font-size: 4rem;
+        font-size: clamp(2rem,4vw,4rem);
         font-weight: 400;
+        transform: rotateY(35deg) rotateZ(5deg)    ;
+        opacity: 0;
+
+        &.active
+        {
+            animation: animateTitle 1.2s forwards;
+        }
     }
 }
 
@@ -387,6 +431,9 @@ main
             }
             border:1px solid #25ff79;
         }
+
+        opacity: 0;
+
     }
 
     @media screen and(max-width:990px) 
@@ -401,15 +448,25 @@ main
     }
 }
 
+.service-element.active{
+    opacity: 0;
+    animation: animateServices 1.2s forwards;
+}
+
 .products
 {
     cursor: none;
     background: white;
     padding-bottom: 100px;
-    h1{
-        font-size: 3.5rem;
+    .products-title{
+        font-size: clamp(2rem,4vw,4rem);
         text-align: center;
-        font-weight: 400;;
+        font-weight: 400;
+        opacity: 0;
+        &.active
+        {
+            animation: animateTitle 1.2s forwards;
+        }
     }
 }
 
@@ -490,6 +547,7 @@ main
             font-size: clamp(1.7rem,2vw,2.3rem);
             padding: 1rem;
             font-weight: 800;
+            text-align: center;
         }
         
         .btn-container
@@ -550,6 +608,12 @@ main
     h1{
         text-align: center;
         font-weight: 400;
+        opacity: 0;
+        font-size: clamp(2rem,4vw,4rem);
+        &.active
+        {
+            animation: animateTitle 1.2s forwards;
+        }   
     }
 }
 
@@ -630,10 +694,10 @@ main
         width: 100%;
         height: 100%;
         display: flex;
+    
+
         .caroussel-element
         {
-            // min-width: 100%;
-            // max-width: 100%;
             min-height: 100%;
             max-height: 100%;
             display: flex;
@@ -660,9 +724,29 @@ main
             {
                 margin-left: .5rem;
             }
-        }
+
+            &:nth-of-type(2)
+            {
+                opacity: 0;
+                &.active
+                {
+                    animation: animateServices 1.2s forwards;
+                }
+            }
+        }      
         
+
+        // .caroussel-element:first-of-type
+        // {
+        //     opacity: 0;
+        // }
     }
+}
+
+
+.final
+{
+    background: $main-green;
 }
 
 .conclusion-content
@@ -673,9 +757,14 @@ main
     margin: 6rem auto ;
     padding: 7rem 0 3rem 0;
     h1{
-        font-size: 3rem;
+        font-size: clamp(2rem,4vw,4rem);
         color: white;
         font-weight: 300;
+        opacity: 0;
+        &.active
+        {
+            animation: animateTitle 1.2s forwards;
+        }
     }
 
     @media screen and(max-width:800px) {
@@ -760,5 +849,25 @@ main
         li{
             height: auto;
         }
+    }
+}
+
+@keyframes animateTitle {
+    from{
+        transform: rotateY(35deg) rotateZ(10deg);
+        opacity: 0;
+    }to{
+        transform: rotateY(0) rotateZ(0);
+        opacity: 1;
+    }
+}
+
+@keyframes animateServices {
+    from{
+        transform: rotateY(30deg) rotateZ(10deg) translateY(50px);
+        opacity: 0;
+    }to{
+        transform: rotateY(0deg) rotateZ(0deg) translateY(0px);
+        opacity: 1;
     }
 }

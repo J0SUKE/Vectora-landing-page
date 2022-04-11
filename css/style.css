@@ -33,7 +33,7 @@ body {
   width: 30px;
   border-radius: 50%;
   background: #25FF79;
-  z-index: 99;
+  z-index: 100;
   mix-blend-mode: difference;
 }
 
@@ -45,7 +45,7 @@ body {
 
 header {
   position: fixed;
-  z-index: 1;
+  z-index: 99;
   left: 0;
   right: 0;
   top: 0;
@@ -423,17 +423,6 @@ main {
   cursor: none;
 }
 
-.page-content {
-  position: absolute;
-  top: 100vh;
-  left: 0;
-  width: 100%;
-}
-
-.final {
-  background: #0d2725;
-}
-
 .hero {
   margin: 200px auto;
   display: -webkit-box;
@@ -451,6 +440,8 @@ main {
   font-size: clamp(3rem, 5vw, 4rem);
   color: white;
   font-weight: 400;
+  -webkit-transform: rotateY(35deg) rotateZ(5deg);
+          transform: rotateY(35deg) rotateZ(5deg);
 }
 
 .hero__right {
@@ -469,6 +460,9 @@ main {
   max-height: 400px;
   -o-object-fit: cover;
      object-fit: cover;
+  -webkit-transform: translateY(40%);
+          transform: translateY(40%);
+  opacity: 0;
 }
 
 @media screen and (max-width: 800px) {
@@ -488,15 +482,93 @@ main {
   }
 }
 
+.hero.active .hero__left h1 {
+  -webkit-animation: animateHeroTitle 1.5s forwards;
+          animation: animateHeroTitle 1.5s forwards;
+}
+
+@-webkit-keyframes animateHeroTitle {
+  from {
+    -webkit-transform: rotateY(35deg) rotateZ(8deg);
+            transform: rotateY(35deg) rotateZ(8deg);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: rotateY(0) rotateZ(0);
+            transform: rotateY(0) rotateZ(0);
+    opacity: 1;
+  }
+}
+
+@keyframes animateHeroTitle {
+  from {
+    -webkit-transform: rotateY(35deg) rotateZ(8deg);
+            transform: rotateY(35deg) rotateZ(8deg);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: rotateY(0) rotateZ(0);
+            transform: rotateY(0) rotateZ(0);
+    opacity: 1;
+  }
+}
+
+.hero.active .hero__right video {
+  -webkit-animation: animateHeroVideo 1.5s forwards;
+          animation: animateHeroVideo 1.5s forwards;
+}
+
+@-webkit-keyframes animateHeroVideo {
+  from {
+    -webkit-transform: translateY(40%);
+            transform: translateY(40%);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes animateHeroVideo {
+  from {
+    -webkit-transform: translateY(40%);
+            transform: translateY(40%);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+.page-content {
+  position: absolute;
+  top: 100vh;
+  left: 0;
+  width: 100%;
+  cursor: none;
+}
+
 .services {
-  padding: 130px 0;
+  padding: 200px 0 100px 0;
   background: white;
 }
 
 .services h1 {
   text-align: center;
-  font-size: 4rem;
+  font-size: clamp(2rem, 4vw, 4rem);
   font-weight: 400;
+  -webkit-transform: rotateY(35deg) rotateZ(5deg);
+          transform: rotateY(35deg) rotateZ(5deg);
+  opacity: 0;
+}
+
+.services h1.active {
+  -webkit-animation: animateTitle 1.2s forwards;
+          animation: animateTitle 1.2s forwards;
 }
 
 .services-grid {
@@ -517,6 +589,7 @@ main {
   padding: 2rem 2rem 3rem 2rem;
   overflow: hidden;
   cursor: pointer;
+  opacity: 0;
 }
 
 .services-grid .service-element img {
@@ -588,16 +661,28 @@ main {
   }
 }
 
+.service-element.active {
+  opacity: 0;
+  -webkit-animation: animateServices 1.2s forwards;
+          animation: animateServices 1.2s forwards;
+}
+
 .products {
   cursor: none;
   background: white;
   padding-bottom: 100px;
 }
 
-.products h1 {
-  font-size: 3.5rem;
+.products .products-title {
+  font-size: clamp(2rem, 4vw, 4rem);
   text-align: center;
   font-weight: 400;
+  opacity: 0;
+}
+
+.products .products-title.active {
+  -webkit-animation: animateTitle 1.2s forwards;
+          animation: animateTitle 1.2s forwards;
 }
 
 .products-grid {
@@ -694,6 +779,7 @@ main {
   font-size: clamp(1.7rem, 2vw, 2.3rem);
   padding: 1rem;
   font-weight: 800;
+  text-align: center;
 }
 
 .products-grid .product-element:last-of-type .btn-container {
@@ -773,6 +859,13 @@ main {
 .reviews h1 {
   text-align: center;
   font-weight: 400;
+  opacity: 0;
+  font-size: clamp(2rem, 4vw, 4rem);
+}
+
+.reviews h1.active {
+  -webkit-animation: animateTitle 1.2s forwards;
+          animation: animateTitle 1.2s forwards;
 }
 
 .reviews__caroussel {
@@ -904,6 +997,19 @@ main {
   margin-left: .5rem;
 }
 
+.reviews__caroussel-container .reviews__caroussel-content .caroussel-element:nth-of-type(2) {
+  opacity: 0;
+}
+
+.reviews__caroussel-container .reviews__caroussel-content .caroussel-element:nth-of-type(2).active {
+  -webkit-animation: animateServices 1.2s forwards;
+          animation: animateServices 1.2s forwards;
+}
+
+.final {
+  background: #0d2725;
+}
+
 .conclusion-content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -919,9 +1025,15 @@ main {
 }
 
 .conclusion-content h1 {
-  font-size: 3rem;
+  font-size: clamp(2rem, 4vw, 4rem);
   color: white;
   font-weight: 300;
+  opacity: 0;
+}
+
+.conclusion-content h1.active {
+  -webkit-animation: animateTitle 1.2s forwards;
+          animation: animateTitle 1.2s forwards;
 }
 
 @media screen and (max-width: 800px) {
@@ -1032,6 +1144,58 @@ main {
   }
   .footer-grid li {
     height: auto;
+  }
+}
+
+@-webkit-keyframes animateTitle {
+  from {
+    -webkit-transform: rotateY(35deg) rotateZ(10deg);
+            transform: rotateY(35deg) rotateZ(10deg);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: rotateY(0) rotateZ(0);
+            transform: rotateY(0) rotateZ(0);
+    opacity: 1;
+  }
+}
+
+@keyframes animateTitle {
+  from {
+    -webkit-transform: rotateY(35deg) rotateZ(10deg);
+            transform: rotateY(35deg) rotateZ(10deg);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: rotateY(0) rotateZ(0);
+            transform: rotateY(0) rotateZ(0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes animateServices {
+  from {
+    -webkit-transform: rotateY(30deg) rotateZ(10deg) translateY(50px);
+            transform: rotateY(30deg) rotateZ(10deg) translateY(50px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: rotateY(0deg) rotateZ(0deg) translateY(0px);
+            transform: rotateY(0deg) rotateZ(0deg) translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes animateServices {
+  from {
+    -webkit-transform: rotateY(30deg) rotateZ(10deg) translateY(50px);
+            transform: rotateY(30deg) rotateZ(10deg) translateY(50px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: rotateY(0deg) rotateZ(0deg) translateY(0px);
+            transform: rotateY(0deg) rotateZ(0deg) translateY(0px);
+    opacity: 1;
   }
 }
 /*# sourceMappingURL=style.css.map */

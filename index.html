@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/caroussel.css"/>
+    <link rel="stylesheet" href="./css/style.css">
     <title>Vectora</title>
     
 </head>
@@ -35,7 +35,7 @@
     </header>
     
     <main>
-        <section class="hero">
+        <section class="hero active">
             <div class="hero__left">
                 <h1>Solving problems<br>
                     with unique and<br>
@@ -48,7 +48,7 @@
     </main>
     <section class="page-content">
         <section class="services">
-            <h1>The service we do,</h1>
+            <h1 class="services-title">The service we do,</h1>
             <div class="services-grid">
                 <a href="https://github.com/J0SUKE" target="_blank" class="service-element">
                     <img src="./assets/brand1.svg" alt="">
@@ -84,7 +84,7 @@
         </section>
 
         <section class="products">
-            <h1>Our Products</h1>
+            <h1 class="products-title">Our Products</h1>
             <div class="products-grid">
                 <a  href="https://github.com/J0SUKE" target="_blank" class="product-element">
                     <div class="product-element-top">
@@ -153,7 +153,7 @@
         </section>
 
         <section class="reviews">
-            <h1>Reviews from Our Clients</h1>
+            <h1 class="reviews-title">Reviews from Our Clients</h1>
             <div class="reviews__caroussel">
                 <button class="btn-next swiper-button-next" data-caroussel="next"></button>
                 <button class="btn-prev swiper-button-prev" data-caroussel="prev"></button>
@@ -282,7 +282,6 @@
 
 </script>
 
-
 <script>
     //mobile menu btn
     
@@ -329,7 +328,7 @@
 
     let isOver = false;
 
-    let btnContainer = document.querySelector(".btn-container .cta-btn-layer");
+    let btnContainer = document.querySelector(".btn-container .cta-btn-layer")
     
     btnContainer.addEventListener("mouseover",(e)=>{
         isOver=true;
@@ -394,6 +393,66 @@
           prevEl: btns[1],
         },
       });
+</script>
+
+<script>
+    let elementsServices = [...document.querySelectorAll(".service-element")];
+    let firstCarousselSlide = document.querySelector(".caroussel-element:nth-of-type(2)");
+    
+    let titles = [
+        document.querySelector(".services-title"),
+        document.querySelector(".products-title"),
+        document.querySelector(".reviews-title"),
+        document.querySelector(".conclusion__left h1"),
+    ]
+
+    let options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.5
+    }
+
+    let callback = (entries, observer) => 
+    {
+        entries.forEach(entry => {
+            //console.log(entry.isIntersecting);
+            if(entry.isIntersecting)
+            {
+                entry.target.classList.add("active");
+            }
+            // Each entry describes an intersection change for one observed
+            // target element:
+            //   entry.boundingClientRect
+            //   entry.intersectionRatio
+            //   entry.intersectionRect
+            //   entry.isIntersecting
+            //   entry.rootBounds
+            //   entry.target
+            //   entry.time
+        });
+    };
+
+    let observer = new IntersectionObserver(callback, options);
+
+    elementsServices.forEach(element => {
+        observer.observe(element);    
+    });
+    observer.observe(firstCarousselSlide);
+
+
+    let optionstitle = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.8
+    }
+
+    let titlesObserver = new IntersectionObserver(callback, options)
+
+    titles.forEach(element => {
+        titlesObserver.observe(element);    
+    });
+    
+
 </script>
 
 </html>
